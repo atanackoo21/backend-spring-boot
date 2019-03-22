@@ -1,0 +1,61 @@
+drop table if exists igrac cascade;
+drop table if exists tim cascade;
+drop table if exists nacionalnost cascade;
+drop table if exists liga cascade;
+drop sequence if exists igrac_seq;
+drop sequence if exists liga_seq;
+drop sequence if exists nacionalnost_seq;
+drop sequence if exists tim_seq;
+
+create table igrac(
+	id integer not null,
+    ime varchar(50) not null,
+    prezime varchar(50) not null,
+	broj_reg varchar (50) not null,
+	datum_rodjenja date not null,
+	nacionalnost integer not null,
+	tim integer not null
+);
+
+create table liga(
+	id integer not null,
+    naziv varchar(100) not null,
+    oznaka varchar(50) not null
+);
+
+create table tim(
+	id integer not null,
+	naziv varchar(100) not null,
+    osnovan date not null,
+	sediste varchar(100) not null,
+	liga integer not null
+);
+
+create table nacionalnost(
+	id integer not null,
+	naziv varchar(100) not null,
+	skracenica varchar(50) not null
+);
+
+alter table igrac add constraint PK_igrac primary key (id);
+alter table tim add constraint PK_tim primary key (id);
+alter table nacionalnost add constraint PK_nacionalnost primary key (id);
+alter table liga add constraint PK_liga primary key (id);
+
+alter table tim add constraint FK_tim_liga 
+foreign key (liga) references liga (id);
+
+alter table igrac add constraint FK_igrac_nacionalnost 
+foreign key (nacionalnost) references nacionalnost (id);
+
+alter table igrac add constraint FK_igrac_tim
+foreign key (tim) references tim (id);
+
+create index IDXFK_igrac_nacionalnost on igrac (nacionalnost);
+create index IDXFK_igrac_tim on igrac (tim);
+create index IDXFK_tim_liga on tim (liga);
+
+create sequence igrac_seq increment 1;
+create sequence liga_seq increment 1;
+create sequence nacionalnost_seq increment 1;
+create sequence tim_seq increment 1;

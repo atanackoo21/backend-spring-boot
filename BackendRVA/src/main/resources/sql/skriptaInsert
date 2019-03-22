@@ -1,0 +1,56 @@
+INSERT INTO "liga"("id", "naziv", "oznaka")
+VALUES(nextval('liga_seq'), 'Jelen Superliga', 'JSL');
+
+INSERT INTO "liga"("id", "naziv", "oznaka")
+VALUES(nextval('liga_seq'), 'Bundesliga', 'BL');
+
+INSERT INTO "liga"("id", "naziv", "oznaka")
+VALUES(nextval('liga_seq'), 'USA soccer liga', 'MLS');
+	   
+INSERT INTO "liga"("id", "naziv", "oznaka")
+VALUES(nextval('liga_seq'), 'Premier liga', 'PL');
+
+INSERT INTO "nacionalnost"("id", "naziv", "skracenica")
+VALUES(nextval('nacionalnost_seq'), 'Srbin', 'srb');
+
+INSERT INTO "nacionalnost"("id", "naziv", "skracenica")
+VALUES(nextval('nacionalnost_seq'), 'Nemac', 'ger');
+
+INSERT INTO "nacionalnost"("id", "naziv", "skracenica")
+VALUES(nextval('nacionalnost_seq'), 'Amerikanac', 'usa');
+
+INSERT INTO "nacionalnost"("id", "naziv", "skracenica")
+VALUES(nextval('nacionalnost_seq'), 'Englez', 'eng');
+
+INSERT INTO "tim"("id", "naziv", "osnovan", "sediste", "liga") 
+VALUES (nextval('tim_seq'), 'New York Red Bulls', '02/29/1996', 'New York', '4');
+
+INSERT INTO "tim"("id", "naziv", "osnovan", "sediste", "liga") 
+VALUES (nextval('tim_seq'), 'Bayern Minhen', '02/29/2008', 'Minhen', '3');
+
+INSERT INTO "tim"("id", "naziv", "osnovan", "sediste", "liga") 
+VALUES (nextval('tim_seq'), 'Radnicki', '8/8/1978', 'Nis', '1');
+
+INSERT INTO "tim"("id", "naziv", "osnovan", "sediste", "liga") 
+VALUES (nextval('tim_seq'), 'Everton', '1/10/1955', 'Liverpul', '2');
+
+select * from tim;
+select * from liga;
+select * from nacionalnost;
+select * from igrac;
+
+INSERT INTO "igrac"("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") 
+VALUES (nextval('igrac_seq'), 'Marko', 'Marin', 'BM21' ,'3/3/1989', '1', '3');
+
+INSERT INTO "igrac"("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") 
+VALUES (nextval('igrac_seq'), 'Lendon', 'Donovan', 'NY11' ,'9/21/1975', '4', '4');
+
+INSERT INTO "igrac"("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") 
+VALUES (nextval('igrac_seq'), 'Luka', 'Jovic', 'ZZ44' ,'12/2/1996', '1', '2');
+
+INSERT INTO "igrac"("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") 
+VALUES (nextval('igrac_seq'), 'Majkl', 'Oven', 'MUTD8' ,'6/13/1977', '2', '1');
+
+INSERT INTO "igrac"("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") 
+VALUES (nextval('igrac_seq'), 'Mario', 'Gomez', 'BM8' ,'12/17/1978', '3', '3');
+
