@@ -31,12 +31,12 @@ public class LigaRestController {
 		return ligaRepository.findAll();
 	}
 	
-	@GetMapping("/ligaId/{id}")
+	@GetMapping("/liga/{id}")
 	public Liga getLiga (@PathVariable Integer id) {
 		return ligaRepository.getOne(id);
 	}
 	
-	@GetMapping("/liga/{naziv}")
+	@GetMapping("/ligaNaziv/{naziv}")
 	public Collection<Liga> getByNaziv(@PathVariable String naziv) {
 		return ligaRepository.findByNazivContainingIgnoreCase(naziv);
 	}

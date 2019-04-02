@@ -28,12 +28,12 @@ public class NacionalnostRestController {
 		return nacionalnostRepository.findAll();
 	}
 	
-	@GetMapping("/nacionalnostId/{id}")
+	@GetMapping("/nacionalnost/{id}")
 	public Nacionalnost getNacionalnost (@PathVariable Integer id) {
 		return nacionalnostRepository.getOne(id);
 	}
 	
-	@GetMapping("/nacionalnost/{naziv}")
+	@GetMapping("/nacionalnostNaziv/{naziv}")
 	public Collection<Nacionalnost> getByNaziv(@PathVariable String naziv) {
 		return nacionalnostRepository.findByNazivContainingIgnoreCase(naziv);
 	}

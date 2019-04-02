@@ -27,17 +27,17 @@ public class IgracRestController {
 		return "Hello";
 	}
 	
-	@GetMapping("/igraci")
+	@GetMapping("/igrac")
 	public Collection<Igrac> getIgraci(){
 		return igracRepository.findAll();
 	}
 	
-	@GetMapping("/igracId/{id}")
+	@GetMapping("/igrac/{id}")
 	public Igrac getIgrac (@PathVariable Integer id) {
 		return igracRepository.getOne(id);
 	}
 	
-	@GetMapping("/igrac/{prezime}")
+	@GetMapping("/igracPrezime/{prezime}")
 	public Collection<Igrac> getByPrezime(@PathVariable String prezime) {
 		return igracRepository.findByPrezimeContainingIgnoreCase(prezime);
 	}
