@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import rva.jpa.Igrac;
 import rva.reps.IgracRepository;
 
+@Api (tags = {"Igrac Rest Controller"})
 @RestController
 public class IgracRestController {
 	
@@ -27,21 +30,25 @@ public class IgracRestController {
 		return "Hello";
 	}
 	
+	@ApiOperation(value = "Get metoda vraca sve igrace")
 	@GetMapping("/igrac")
 	public Collection<Igrac> getIgraci(){
 		return igracRepository.findAll();
 	}
 	
+	@ApiOperation(value = "Get metoda vraca igraca sa prosledjenim id-em")
 	@GetMapping("/igrac/{id}")
 	public Igrac getIgrac (@PathVariable Integer id) {
 		return igracRepository.getOne(id);
 	}
 	
+	@ApiOperation(value = "Get metoda vraca igraca sa prosledjenim prezimenom")
 	@GetMapping("/igracPrezime/{prezime}")
 	public Collection<Igrac> getByPrezime(@PathVariable String prezime) {
 		return igracRepository.findByPrezimeContainingIgnoreCase(prezime);
 	}
 	
+	@ApiOperation(value = "Delete metoda brise igraca sa prosledjenim id-em")
 	@DeleteMapping("/igrac/{id}")
 	public ResponseEntity<HttpStatus> deleteIgraca(@PathVariable Integer id){
 		if (igracRepository.existsById(id)) {
@@ -52,6 +59,7 @@ public class IgracRestController {
 		return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
 	}
 	
+	@ApiOperation(value = "Post metoda dodaje igraca")
 	@PostMapping ("/igrac")
 	public ResponseEntity<HttpStatus> addIgraca(@RequestBody Igrac igrac){
 
@@ -60,6 +68,7 @@ public class IgracRestController {
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "Put metoda modifikuje igraca")
 	@PutMapping ("/igrac")
 	public ResponseEntity<HttpStatus> updateIgraca(@RequestBody Igrac igrac){
 		if (igracRepository.existsById(igrac.getId()))

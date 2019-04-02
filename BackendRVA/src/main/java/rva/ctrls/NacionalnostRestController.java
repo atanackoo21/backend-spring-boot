@@ -23,7 +23,7 @@ public class NacionalnostRestController {
 	@Autowired
 	private NacionalnostRepository nacionalnostRepository;
 	
-	@GetMapping("/nacionalnosti")
+	@GetMapping("/nacionalnost")
 	public Collection<Nacionalnost> getNacionalnosti(){
 		return nacionalnostRepository.findAll();
 	}

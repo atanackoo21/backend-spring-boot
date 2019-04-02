@@ -27,7 +27,7 @@ public class Swagger {
 				"Razvoj višeslojnih aplikacija", 
 				"1.0", 
 				"", 
-				new Contact("Miloš Vukmanović", "https://github.com/rva2019/BackendRVA4", "vukmanovic.milos@gmail.com"), 
+				new Contact("Aleksa Atanackovic", "https://github.com/rva2019/BackendRVA4", "aleksa.atanackovic21@gmail.com"), 
 				"", 
 				"");
 	}
