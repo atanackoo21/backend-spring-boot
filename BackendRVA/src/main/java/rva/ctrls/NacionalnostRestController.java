@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import rva.jpa.Nacionalnost;
@@ -47,23 +48,20 @@ public class NacionalnostRestController {
 		return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
 	}
 	
-	@PostMapping ("/nacionalnost/{nacionalnost}")
-	public ResponseEntity<HttpStatus> addNacionalnost(@PathVariable Nacionalnost nacionalnost){
-		if (nacionalnostRepository.existsById(nacionalnost.getId())) {
-			return new ResponseEntity<HttpStatus>(HttpStatus.CONFLICT);
-		}
+	@PostMapping ("/nacionalnost")
+	public ResponseEntity<HttpStatus> addNacionalnost(@RequestBody Nacionalnost nacionalnost){
+
 		nacionalnostRepository.save(nacionalnost);
+		
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 	
-	@PutMapping ("/nacionalnost/{nacionalnost}")
-	public ResponseEntity<HttpStatus> updateNacionalnost(@PathVariable Nacionalnost nacionalnost){
-		if (nacionalnostRepository.existsById(nacionalnost.getId())) {
+	@PutMapping ("/nacionalnost")
+	public ResponseEntity<HttpStatus> updateNacionalnost(@RequestBody Nacionalnost nacionalnost){
+		if (nacionalnostRepository.existsById(nacionalnost.getId())) 
 			nacionalnostRepository.save(nacionalnost);
-			return new ResponseEntity<HttpStatus>(HttpStatus.OK);
-		}
 		
-		return new ResponseEntity<HttpStatus>(HttpStatus.CONFLICT);
+		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 
 	}
 

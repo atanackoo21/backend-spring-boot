@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import rva.jpa.Tim;
@@ -26,12 +27,12 @@ public class TimRestController {
 		return timRepository.findAll();
 	}
 	
-	@GetMapping("/timId/{id}")
+	@GetMapping("/tim/{id}")
 	public Tim getTim (@PathVariable Integer id) {
 		return timRepository.getOne(id);
 	}
 	
-	@GetMapping("/tim/{naziv}")
+	@GetMapping("/timNaziv/{naziv}")
 	public Collection<Tim> getByNaziv(@PathVariable String naziv) {
 		return timRepository.findByNazivContainingIgnoreCase(naziv);
 	}
@@ -46,23 +47,21 @@ public class TimRestController {
 		return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
 	}
 	
-	@PostMapping ("/tim/{tim}")
-	public ResponseEntity<HttpStatus> addTim(@PathVariable Tim tim){
-		if (timRepository.existsById(tim.getId())) {
-			return new ResponseEntity<HttpStatus>(HttpStatus.CONFLICT);
-		}
+	//insert
+	@PostMapping ("/tim")
+	public ResponseEntity<HttpStatus> addTim(@RequestBody Tim tim){
 		timRepository.save(tim);
+		
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 	
-	@PutMapping ("/tim/{tim}")
-	public ResponseEntity<HttpStatus> updateTim(@PathVariable Tim tim){
-		if (timRepository.existsById(tim.getId())) {
+	//update
+	@PutMapping ("/tim")
+	public ResponseEntity<HttpStatus> updateTim(@RequestBody Tim tim){
+		if (timRepository.existsById(tim.getId())) 
 			timRepository.save(tim);
-			return new ResponseEntity<HttpStatus>(HttpStatus.OK);
-		}
 		
-		return new ResponseEntity<HttpStatus>(HttpStatus.CONFLICT);
+		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 
 	}
 
