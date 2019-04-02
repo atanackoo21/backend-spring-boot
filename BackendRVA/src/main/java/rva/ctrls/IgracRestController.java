@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,12 +26,15 @@ public class IgracRestController {
 	@Autowired
 	private IgracRepository igracRepository;
 	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
 	@GetMapping("/")
 	public String opet(){
 		return "Hello";
 	}
 	
-	@ApiOperation(value = "Get metoda vraca sve igrace")
+	@ApiOperation(value = "Get all metoda vraca sve igrace")
 	@GetMapping("/igrac")
 	public Collection<Igrac> getIgraci(){
 		return igracRepository.findAll();
@@ -53,6 +57,10 @@ public class IgracRestController {
 	public ResponseEntity<HttpStatus> deleteIgraca(@PathVariable Integer id){
 		if (igracRepository.existsById(id)) {
 			igracRepository.deleteById(id);
+			
+			if(id == -100) 
+				jdbcTemplate.execute("INSERT INTO \"igrac\"(\"id\", \"ime\", \"prezime\", \"broj_reg\", \"datum_rodjenja\", \"nacionalnost\", \"tim\") \r\n" + 
+						"VALUES (-100, 'Miki', 'Kralj', 'BB121' ,'3/3/1999', '-99', '-99');");
 			
 			return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 		}

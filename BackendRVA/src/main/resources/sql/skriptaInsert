@@ -54,3 +54,23 @@ VALUES (nextval('igrac_seq'), 'Majkl', 'Oven', 'MUTD8' ,'6/13/1977', '2', '1');
 INSERT INTO "igrac"("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") 
 VALUES (nextval('igrac_seq'), 'Mario', 'Gomez', 'BM8' ,'12/17/1978', '3', '3');
 
+INSERT INTO "liga"("id", "naziv", "oznaka")
+VALUES(-100, 'Lav Superliga', 'LSL');
+
+INSERT INTO "nacionalnost"("id", "naziv", "skracenica")
+VALUES(-100, 'Mongolac', 'mng');
+
+INSERT INTO "liga"("id", "naziv", "oznaka")
+VALUES(-99, 'Plav SuperSuperliga', 'PLSL');
+
+INSERT INTO "nacionalnost"("id", "naziv", "skracenica")
+VALUES(-99, 'Bahreinac', 'bah');
+
+INSERT INTO "tim"("id", "naziv", "osnovan", "sediste", "liga") 
+VALUES (-99, 'Charltoncevic', '02/9/1876', 'Charltoncevic', '-99');
+
+INSERT INTO "tim"("id", "naziv", "osnovan", "sediste", "liga") 
+VALUES (-100, 'Charlton', '02/9/1876', 'Charlton', '-99');
+
+INSERT INTO "igrac"("id", "ime", "prezime", "broj_reg", "datum_rodjenja", "nacionalnost", "tim") 
+VALUES (-100, 'Miki', 'Kralj', 'BB121' ,'3/3/1999', '-99', '-99');
